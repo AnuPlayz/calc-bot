@@ -11,13 +11,28 @@ module.exports = {
 			const add = new ButtonBuilder()
 				.setCustomId('add')
 				.setLabel('+')
-				.setStyle(ButtonStyle.Secondary);
+				.setStyle(ButtonStyle.Primary);
 
 			const sub = new ButtonBuilder()
 				.setCustomId('sub')
 				.setLabel('-')
-				.setStyle(ButtonStyle.Secondary);
+				.setStyle(ButtonStyle.Primary);
 
+			const mul = new ButtonBuilder()
+				.setCustomId('mul')
+				.setLabel('x')
+				.setStyle(ButtonStyle.Primary);
+			
+			const div = new ButtonBuilder()
+				.setCustomId('div')
+				.setLabel('/')
+				.setStyle(ButtonStyle.Primary);
+		
+			const equal = new ButtonBuilder()
+				.setCustomId('equal')
+				.setLabel('=')
+				.setStyle(ButtonStyle.Primary);
+	
 			const num1 = new ButtonBuilder()
 				.setCustomId('num1')
 				.setLabel('1')
@@ -67,7 +82,12 @@ module.exports = {
 				.setCustomId('num0')
 				.setLabel('0')
 				.setStyle(ButtonStyle.Secondary);
-				
+			
+			const cancel = new ButtonBuilder()
+				.setCustomId('cancel')
+				.setLabel('Exit')
+				.setStyle(ButtonStyle.Danger);
+	
 			const row1 = new ActionRowBuilder()
 				.addComponents(num1, num2, num3, add);
 
@@ -75,11 +95,14 @@ module.exports = {
 				.addComponents(num4, num5, num6, sub);
 
 			const row3 = new ActionRowBuilder()
-				.addComponents(num7, num8, num9, num0);
+				.addComponents(num7, num8, num9, mul);
 			
-				await interaction.reply({
+			const row4 = new ActionRowBuilder()
+				.addComponents(cancel, num0, div, equal);
+			
+			await interaction.reply({
 				content: `Calculator Bot : `,
-				components: [row1,row2,row3]
-		});
+				components: [row1,row2,row3,row4]	
+			});
 	},
 };
