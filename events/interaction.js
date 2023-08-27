@@ -1,8 +1,10 @@
-const { Events } = require('discord.js');
+const { Events , Collection } = require('discord.js');
+const handleButton = require('../calculator/handleButtons');
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
+		if(interaction.isButton()) return handleButton(interaction)
 		if (!interaction.isChatInputCommand()) return;
 
 		const command = interaction.client.commands.get(interaction.commandName);
